@@ -20,7 +20,7 @@ class UserFirestore {
           .collection('msnusers')
           .withConverter<MsnUser>(
           fromFirestore: (snapshot, _) => MsnUser.fromJson(snapshot.data()!),
-          toFirestore: (player, _) => MsnUser.toJson()
+          toFirestore: (msnuser, _) => msnuser.toJson()
       );
     }
 
@@ -49,10 +49,12 @@ class UserFirestore {
     return userCredential;
   }
 
-
+  /*
   static Stream<List<MsnUser>> getUsers() => FirebaseFirestore.instance
       .collection('msnusers')
       .orderBy(MsnUser.lastMessageTime, descending: true)
       .snapshots()
       .transform();
+
+   */
 }
