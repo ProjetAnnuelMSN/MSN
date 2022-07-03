@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "827664850372",
+    "project_id": "msn-app-5f132",
+    "storage_bucket": "msn-app-5f132.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827664850372:android:3a88e8bcc145c567d11891",
+        "android_client_info": {
+          "package_name": "com.msn.msn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827664850372-81i1d2um3m4hq54dun3ahrb0401eb20k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpb04AejdyiXNv4_DQg44K6WR2VM6Dskg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827664850372-81i1d2um3m4hq54dun3ahrb0401eb20k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
