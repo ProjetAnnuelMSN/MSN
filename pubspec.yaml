@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^1.17.0
   firebase_auth: ^3.3.18
   cloud_firestore: ^3.1.17
+  modal_progress_hud_nsn: ^0.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -41,7 +42,8 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
+     sdk: flutter
+  stream_chat_flutter: ^4.0.0
   build_runner: ^2.1.11
 
   # The "flutter_lints" package below contains a set of recommended lints to

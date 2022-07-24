@@ -1,6 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-void main() {
+import 'ui/widgets/login.dart';
+
+//import '/login.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -48,10 +57,116 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
+  final _auth = FirebaseAuth.instance;
+  bool showProgress = false;
+  late String email, password;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Welcome to MSN"),
+      ),
+      body: Center(
+        child: ModalProgressHUD(
+          inAsyncCall: showProgress,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Registration Page",
+                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  email = value; //get the value entered by user.
+                },
+                decoration: InputDecoration(
+                    hintText: "Enter your Email",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)))),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  password = value; //get the value entered by user.
+                },
+                decoration: InputDecoration(
+                    hintText: "Enter your Password",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)))),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Material(
+                elevation: 5,
+                color: Colors.lightBlue,
+                borderRadius: BorderRadius.circular(32.0),
+                child: MaterialButton(
+                  onPressed: () async {
+                    setState(() {
+                      showProgress = true;
+                    });
+                    try {
+                      final newuser =
+                      await _auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
+                      if (newuser != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyLoginPage()),
+                        );
+                        setState(() {
+                          showProgress = false;
+                        });
+                      }
+                    } catch (e) {}
+                  },
+                  minWidth: 200.0,
+                  height: 45.0,
+                  child: Text(
+                    "Register",
+                    style:
+                    TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyLoginPage()),
+                  );
+                },
+                child: Text(
+                  "Already Registred? Login Now",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.w900),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+  /*void _incrementCounter() {
+    //setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -59,9 +174,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
-  }
+*/
 
-  @override
+  /*@override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -105,11 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
     );
-  }
-}
+  }*/
+
