@@ -8,6 +8,7 @@ class UserFirestore {
 
   static UserFirestore? _instance;
 
+  // On initialise l'instance du Cloud Firebase
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   static late final _msnUserRef;
