@@ -4,6 +4,6 @@ class Message {
 
   String contenu;
 
-  
+  Message(this.contenu, this.dateEnvoi);
 
 }
